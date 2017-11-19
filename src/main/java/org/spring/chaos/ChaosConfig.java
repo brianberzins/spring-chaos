@@ -18,12 +18,13 @@ class ChaosConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        if (chaosLatencyMilliseconds > 0) {
+            LatencyInterceptor latencyInterception = new LatencyInterceptor(chaosLatencyMilliseconds);
+            registry.addInterceptor(latencyInterception);
+        }
         if (chaosMakeUnavailable) {
             UnavailableInterceptor unavailableInterceptor = new UnavailableInterceptor();
             registry.addInterceptor(unavailableInterceptor);
-        } else if (chaosLatencyMilliseconds > 0) {
-            LatencyInterceptor latencyInterception = new LatencyInterceptor(chaosLatencyMilliseconds);
-            registry.addInterceptor(latencyInterception);
         }
     }
 

@@ -3,7 +3,7 @@ package org.spring.chaos;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LatencyInterceptor extends ChaosIntercepter {
+public class LatencyInterceptor extends ChaosInterceptor {
 
     private long chaosLatencyMilliseconds;
 
